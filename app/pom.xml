@@ -14,11 +14,6 @@
 	<name>AutomatedTradingSystem</name>
 	<description>Automated Trading System</description>
 
-	<modules>
-		<module>app</module>
-		<module>security-module</module>
-	</modules>
-
 	<properties>
 		<java.version>21</java.version>
 	</properties>
@@ -39,6 +34,12 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-rest</artifactId>
+		</dependency>
+		<!-- Local libs -->
+		<dependency>
+			<groupId>com.ats</groupId>
+			<artifactId>SecurityModule</artifactId>
+			<version>${project.version}</version>
 		</dependency>
 		<!-- Others -->
 		<dependency>
