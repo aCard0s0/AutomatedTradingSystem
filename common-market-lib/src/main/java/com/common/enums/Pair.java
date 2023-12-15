@@ -26,6 +26,6 @@ public enum Pair {
 
     @Override
     public String toString() {
-        return "Pair{pair='%s'}".formatted(pair);
+        return "Pair{'%s'}".formatted(pair);
     }
 }

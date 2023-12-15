@@ -4,12 +4,12 @@ import com.common.enums.Exchange;
 import com.common.enums.Timeframe;
 import com.common.enums.Pair;
 import com.common.model.Market;
-import com.common.stategy.interval.BinanceTimeframe;
-import com.common.stategy.interval.KrakenTimeframe;
-import com.common.stategy.pair.BinancePair;
-import com.common.stategy.pair.KrakenPair;
-import com.common.stategy.url.BinanceUrlBuilder;
-import com.common.stategy.url.KrakenUrlBuilder;
+import com.common.strategy.timeframe.BinanceTimeframe;
+import com.common.strategy.timeframe.KrakenTimeframe;
+import com.common.strategy.pair.BinancePair;
+import com.common.strategy.pair.KrakenPair;
+import com.common.strategy.url.BinanceUrlBuilder;
+import com.common.strategy.url.KrakenUrlBuilder;
 import org.testng.annotations.Test;
 
 import static org.testng.Assert.assertNotEquals;

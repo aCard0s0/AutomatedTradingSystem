@@ -1,4 +1,4 @@
-package com.common.stategy.interval;
+package com.common.strategy.timeframe;
 
 import com.common.enums.Timeframe;
 
@@ -14,10 +14,4 @@ public interface TimeframeStrategy {
      * For example. this is useful to set parameter when calling the exchange API.
      */
     String getExchangeTimeframe();
-
-    /**
-     * @return the cron expression to schedule the candlestick retrieval.
-     * For example, the 1h timeframe will have the cron expression "0 0 * * *"
-     */
-    String getCronExpression();
 }

@@ -1,5 +1,8 @@
 package com.common.enums;
 
+import lombok.Getter;
+
+@Getter
 public enum Timeframe {
     ONE_MINUTE("1m"),
     FIVE_MINUTES("5m"),
@@ -11,18 +14,23 @@ public enum Timeframe {
     ONE_WEEK("1w"),
     ONE_MONTH("1M");
 
-    private final String interval;
+    private final String timeframe;
 
-    Timeframe(String interval) {
-        this.interval = interval;
+    Timeframe(String timeframe) {
+        this.timeframe = timeframe;
     }
 
     public static Timeframe fromString(String interval) {
         for (Timeframe i : Timeframe.values()) {
-            if (i.interval.equals(interval)) {
+            if (i.timeframe.equals(interval)) {
                 return i;
             }
         }
         throw new IllegalArgumentException("Invalid Timeframe: " + interval);
+    }
+
+    @Override
+    public String toString() {
+        return "Timeframe{'%s'}".formatted(timeframe);
     }
 }
