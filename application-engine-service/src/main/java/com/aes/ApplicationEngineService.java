@@ -8,9 +8,9 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @SpringBootApplication
 @EnableJpaRepositories(basePackages = "com.ats.security")
 @EntityScan("com.ats.security")
-public class ApplicationEngine {
+public class ApplicationEngineService {
 	public static void main(String[] args) {
-		SpringApplication.run(ApplicationEngine.class, args);
+		SpringApplication.run(ApplicationEngineService.class, args);
 	}
 
 }
