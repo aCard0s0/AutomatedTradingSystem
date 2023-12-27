@@ -5,14 +5,7 @@ import com.mml.enums.Pair;
 import lombok.Getter;
 
 public class BinanceConverter {
-    @Getter
-    private static final BinanceConverter instance;
-
-    static {
-        instance = new BinanceConverter();
-    }
-
-    public BinanceConverter() {
+    private BinanceConverter() {
     }
 
     public static String convertPair(Pair pair) {

@@ -5,14 +5,7 @@ import com.mml.enums.Pair;
 import lombok.Getter;
 
 public class BitstampConverter {
-    @Getter
-    private static final BitstampConverter instance;
-
-    static {
-        instance = new BitstampConverter();
-    }
-
-    public BitstampConverter() {
+    private BitstampConverter() {
     }
 
     public static String convertPair(Pair pair) {

@@ -9,11 +9,13 @@ import static org.testng.Assert.assertEquals;
 
 public class KrakenConverterTest {
 
+    @SuppressWarnings("ResultOfMethodCallIgnored")
     @Test(expectedExceptions = IllegalArgumentException.class)
     public void testConvertPair_InvalidPair() {
         KrakenConverter.convertPair(Pair.fromString("invalidPair"));
     }
 
+    @SuppressWarnings("ResultOfMethodCallIgnored")
     @Test(expectedExceptions = IllegalArgumentException.class)
     public void testConvertInterval_InvalidInterval() {
         KrakenConverter.convertTimeframe(Timeframe.fromString("invalidInterval"));

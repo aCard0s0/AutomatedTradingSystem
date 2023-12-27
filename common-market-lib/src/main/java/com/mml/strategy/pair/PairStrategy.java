@@ -7,12 +7,12 @@ import com.mml.enums.Pair;
  */
 public interface PairStrategy {
     /**
-     * @return
+     * @return the pair definition used by AutomatedTradingSystem
      */
     Pair getPair();
 
     /**
-     * @return
+     * @return the pair definition for the exchange
      */
     String getExchangePair();
 }

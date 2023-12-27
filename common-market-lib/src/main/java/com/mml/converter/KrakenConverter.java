@@ -5,14 +5,7 @@ import com.mml.enums.Pair;
 import lombok.Getter;
 
 public class KrakenConverter {
-    @Getter
-    private static final KrakenConverter instance;
-
-    static {
-        instance = new KrakenConverter();
-    }
-
-    public KrakenConverter() {
+    private KrakenConverter() {
     }
 
     public static String convertPair(Pair pair) {
