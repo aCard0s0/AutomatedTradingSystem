@@ -1,4 +1,4 @@
-package com.ats.security.exceptions;
+package com.ats.app.exceptions;
 
 import org.springframework.web.bind.annotation.ControllerAdvice;
 

@@ -1,4 +1,4 @@
-package com.ats.security.controller;
+package com.ats.app.controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
