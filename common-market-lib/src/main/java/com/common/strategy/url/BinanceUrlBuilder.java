@@ -1,7 +1,7 @@
 package com.common.strategy.url;
 
-import java.sql.Timestamp;
 import java.time.LocalDateTime;
+import java.time.ZoneOffset;
 
 public record BinanceUrlBuilder() implements UrlStrategy {
     @Override
@@ -16,7 +16,11 @@ public record BinanceUrlBuilder() implements UrlStrategy {
 
     @Override
     public String buildCandlestickUrl(String pair, String interval, LocalDateTime start, LocalDateTime end) {
-        return null;
+        return "https://api.binance.com/api/v3/klines?symbol=%s&startTime=%s&endTime=%s&interval=%s".formatted(
+                pair,
+                start.toInstant(ZoneOffset.UTC).toEpochMilli(),
+                end.toInstant(ZoneOffset.UTC).toEpochMilli(),
+                interval);
     }
 
     @Override
