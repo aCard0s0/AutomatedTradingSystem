@@ -18,8 +18,8 @@
 
 	<modules>
 		<module>application-engine-service</module>
-		<module>security-api-module</module>
 		<module>market-watcher-service</module>
+		<module>security-api-module</module>
 		<module>common-market-lib</module>
 	</modules>
 

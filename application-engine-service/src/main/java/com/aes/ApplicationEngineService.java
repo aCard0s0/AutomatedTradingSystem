@@ -6,8 +6,8 @@ import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @SpringBootApplication
-@EnableJpaRepositories(basePackages = "com.ats.security")
-@EntityScan("com.ats.security")
+//@EnableJpaRepositories(basePackages = "com.sam")
+//@EntityScan("com.sam")
 public class ApplicationEngineService {
 	public static void main(String[] args) {
 		SpringApplication.run(ApplicationEngineService.class, args);
