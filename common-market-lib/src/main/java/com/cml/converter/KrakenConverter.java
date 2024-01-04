@@ -24,6 +24,8 @@ public class KrakenConverter {
             case ONE_HOUR -> "60";
             case FOUR_HOURS -> "240";
             case ONE_DAY -> "1440";
+            case ONE_WEEK -> "10080";
+            // FIFTEEN_DAYS -> "21600";
             default -> throw new IllegalArgumentException("Invalid Kraken Timeframe: " + timeframe);
         };
     }
