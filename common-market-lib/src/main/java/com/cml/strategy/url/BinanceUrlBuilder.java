@@ -5,13 +5,11 @@ import java.time.ZoneOffset;
 
 public record BinanceUrlBuilder() implements UrlStrategy {
     @Override
-    public String buildCandlestickUrl(String pair, String interval) {
-        return null;
-    }
-
-    @Override
     public String buildCandlestickUrl(String pair, String interval, LocalDateTime start) {
-        return null;
+        return "https://api.binance.com/api/v3/klines?symbol=%s&startTime=%s&interval=%s&limit=1000".formatted(
+                pair,
+                start.toInstant(ZoneOffset.UTC).toEpochMilli(),
+                interval);
     }
 
     @Override

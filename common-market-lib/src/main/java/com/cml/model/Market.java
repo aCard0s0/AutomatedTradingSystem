@@ -21,11 +21,11 @@ public final class Market {
     private final UrlStrategy url;
 
     public String getMarketId() {
-        return "%s-%s-%s".formatted(exchange.getExchange(), getPairStr(), getTimeframeStr());
+        return "%s_%s_%s".formatted(exchange.getExchange(), getPairStr(), getTimeframeStr());
     }
 
     public String getTableName() {
-        return "candlestick_partition_"+ getMarketId().replace("-", "_");
+        return "candlestick_partition_"+ getMarketId();
     }
 
     public Pair getPair() {
