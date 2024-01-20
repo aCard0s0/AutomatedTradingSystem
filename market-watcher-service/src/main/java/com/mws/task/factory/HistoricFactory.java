@@ -7,7 +7,7 @@ import com.mws.processor.factory.CandlestickProcessorMap;
 import com.mws.service.db.SqlClientService;
 import com.mws.task.TasksMap;
 import com.mws.task.callback.WatcherTaskCallback;
-import com.mws.task.runnable.HistoricDataRetrieverTask;
+import com.mws.task.runnable.HistoricRetrieverTask;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
 
@@ -37,7 +37,7 @@ public class HistoricFactory implements TaskFactory {
     }
 
     public void createTask(Market market) {
-        HistoricDataRetrieverTask task = new HistoricDataRetrieverTask(
+        HistoricRetrieverTask task = new HistoricRetrieverTask(
                 market,
                 exchangeApiMap.getApiClient(market.getExchange()),
                 processorsMap.getProcessor(market.getExchange()),

@@ -1,10 +1,59 @@
+## Market Watcher Service
 This application is a simple market data watcher that allows to monitor the candles of a given crypto pair in a given timeframe.
+Main features:
+ - Fetch all the historic data for a given market and timeframe until the current date and time.
+ - Watch the market for a given market and timeframe and save the last close candle.
+ - API to add, retrieve, activate and deactivate markets.
+ - API to start, stop and check state the tasks for a given market.
 
-### Dependencies
-- Java 21.0.0
-- Maven 
-- Docker
-- PostgreSQL
+
+### Structure
+- Tasks
+  - **HistoricRetrieverTask**: Retrieves the historic data for a given market and timeframe.
+  - **MarketWatcherTask**: Fetches the last close candle for a given market and timeframe, based on cron expression.
+- HTTP Pooling
+  - **GenericApiClient**: Generic HTTP client to perform GET public candle requests.
+- Candle Processor
+  - **BinanceCandleProcessor**: implementation to process the candles from Binance exchange.
+  - **KrakenCandleProcessor**: implementation to process the candles from Kraken exchange.
+- Database Connection
+  - **PostgresService**: implementation to connect, create table and save the candles to a Postgres database.
+
+
+### Todos
+- [ ] Improve HTTP Pooling configuration
+- [ ] Redefine ExchangeAPI interface
+- [ ] Improve PostgresService
+
+
+## API Endpoints
+
+### Market Endpoints
+| HTTP Verbs | Endpoints                       | Action                                                                                                            |
+|------------|---------------------------------|-------------------------------------------------------------------------------------------------------------------|
+| POST       | /api/v0/markets                 | Add a list of markets to the DB. It will not start any task with the created market.                              |
+| GET        | /api/v0/markets                 | Retrieves the list of markets details according with the parameters: _exchange_, _pair_, _timeframe_ and _active_ |
+| GET        | /api/v0/markets/{id}            | Retrieves the market details for the given id.                                                                    |
+| PUT        | /api/v0/markets/{id}            | Update the existing market for the given id.                                                                      |
+| POST       | /api/v0/markets/{id}/activate   | Sets the market active=true and starts the tasks if param task=start                                              |
+| POST       | /api/v0/markets/{id}/deactivate | Sets the market active=true and stops the tasks if param task=stop                                                |
+
+### Task Endpoints
+| HTTP Verbs | Endpoints          | Action                                                                                                  |
+|------------|--------------------|---------------------------------------------------------------------------------------------------------|
+| GET        | /api/v0/task       | Retrieves the list of tasks.                                                                            |
+| POST       | /api/v0/task/start | Start the task of retrieving the historic data or watch the market if updated for the given market code |
+| POST       | /api/v0/task/stop  | Stops any task for the given market code.                                                               |
+
+### JMX Operations
+| Operation Name   | Description                                                                                     |
+|------------------|-------------------------------------------------------------------------------------------------|
+| startTask        | Starts the task of retrieving the historic data or watch the market if updated for the given id |
+| stopTask         | Stops any task for the given id                                                                 |
+| updateTaskCount  | Updates the number of task allowed to be executed at the same time                              |
+| activateMarket   | Sets the _active=true_ for any given market id                                                  |
+| deactivateMarket | Sets the _active=false_ for any given market id                                                 |
+
 
 ### Java
 ```bash
@@ -17,7 +66,7 @@ Build Image
 docker build -t ats .
 docker images
 ```
-Run Container
+Quick Reference
 ```bash
 docker run --name ats-app -p 8080:8080 -d ats
 docker ps -a
@@ -54,31 +103,8 @@ CREATE TABLE your_table (
 select * from your_table;
 ```
 
-## API Endpoints
-
-### Market Endpoints
-| HTTP Verbs | Endpoints                       | Action                                                                                                            |
-|------------|---------------------------------|-------------------------------------------------------------------------------------------------------------------|
-| POST       | /api/v0/markets                 | Add a list of markets to the DB. It will not start any task with the created market.                              |
-| GET        | /api/v0/markets                 | Retrieves the list of markets details according with the parameters: _exchange_, _pair_, _timeframe_ and _active_ |
-| GET        | /api/v0/markets/{id}            | Retrieves the market details for the given id.                                                                    |
-| PUT        | /api/v0/markets/{id}            | Update the existing market for the given id.                                                                      |
-| POST       | /api/v0/markets/{id}/activate   | Sets the market active=true and starts the tasks if param task=start                                              |
-| POST       | /api/v0/markets/{id}/deactivate | Sets the market active=true and stops the tasks if param task=stop                                                |
-
-### Task Endpoints
-| HTTP Verbs | Endpoints          | Action                                                                                                  |
-|------------|--------------------|---------------------------------------------------------------------------------------------------------|
-| GET        | /api/v0/task       | Retrieves the list of tasks.                                                                            |
-| POST       | /api/v0/task/start | Start the task of retrieving the historic data or watch the market if updated for the given market code |
-| POST       | /api/v0/task/stop  | Stops any task for the given market code.                                                               |
-
-### JMX Operations
-| Operation Name   | Description                                                                                     |
-|------------------|-------------------------------------------------------------------------------------------------|
-| startTask        | Starts the task of retrieving the historic data or watch the market if updated for the given id |
-| stopTask         | Stops any task for the given id                                                                 |
-| updateTaskCount  | Updates the number of task allowed to be executed at the same time                              |
-| activateMarket   | Sets the _active=true_ for any given market id                                                  |
-| deactivateMarket | Sets the _active=false_ for any given market id                                                 |
-
+### Dependencies
+- Java 21.0.0
+- Maven
+- Docker
+- PostgreSQL

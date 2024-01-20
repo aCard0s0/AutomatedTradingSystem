@@ -5,7 +5,6 @@ import com.mws.calendar.CalendarUtils;
 import com.mws.processor.CandlestickProcessor;
 import com.mws.service.db.SqlClientService;
 import com.mws.task.callback.WatcherTaskCallback;
-import com.mws.task.runnable.HistoricDataRetrieverTask;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
@@ -27,9 +26,9 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @SpringBootTest
-public class HistoricDataRetrieverTaskTest {
+public class HistoricRetrieverTaskTest {
     @InjectMocks
-    private HistoricDataRetrieverTask victim;
+    private HistoricRetrieverTask victim;
     @Mock
     private ExchangeApi apiClient;
     @Mock
@@ -44,7 +43,7 @@ public class HistoricDataRetrieverTaskTest {
     @BeforeMethod
     public void setUp() {
         MockitoAnnotations.openMocks(this);
-        victim = new HistoricDataRetrieverTask(buildMockMarket(), apiClient, processorService, sqlClientService, watcherTaskCallback, calendar);
+        victim = new HistoricRetrieverTask(buildMockMarket(), apiClient, processorService, sqlClientService, watcherTaskCallback, calendar);
     }
 
     @Test

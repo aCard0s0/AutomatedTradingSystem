@@ -26,7 +26,7 @@ import java.util.Optional;
  *
  */
 @Log4j2
-public class HistoricDataRetrieverTask implements Runnable {
+public class HistoricRetrieverTask implements Runnable {
     private final Market market;
     private final ExchangeApi apiClient;
     private final CandlestickProcessor processorService;
@@ -34,12 +34,12 @@ public class HistoricDataRetrieverTask implements Runnable {
     private final WatcherTaskCallback watcherTaskCallback;
     private final CalendarUtils calendar;
 
-    public HistoricDataRetrieverTask(Market market,
-                                     ExchangeApi apiClient,
-                                     CandlestickProcessor processorService,
-                                     SqlClientService sqlClientService,
-                                     WatcherTaskCallback watcherTaskCallback,
-                                     CalendarUtils calendar) {
+    public HistoricRetrieverTask(Market market,
+                                 ExchangeApi apiClient,
+                                 CandlestickProcessor processorService,
+                                 SqlClientService sqlClientService,
+                                 WatcherTaskCallback watcherTaskCallback,
+                                 CalendarUtils calendar) {
         this.market = market;
         this.apiClient = apiClient;
         this.processorService = processorService;

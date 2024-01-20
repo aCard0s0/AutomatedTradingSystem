@@ -2,7 +2,7 @@ package com.mws.service;
 
 import com.cml.model.Market;
 import com.mws.service.api.MarketService;
-import com.mws.task.runnable.HistoricDataRetrieverTask;
+import com.mws.task.runnable.HistoricRetrieverTask;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
@@ -44,6 +44,6 @@ public class CryptoMarketWatcherServiceTest {
 
         victim.startMarketTasks();
 
-        verify(executorService, times(mockMarkets.size())).submit(any(HistoricDataRetrieverTask.class));
+        verify(executorService, times(mockMarkets.size())).submit(any(HistoricRetrieverTask.class));
     }
 }
