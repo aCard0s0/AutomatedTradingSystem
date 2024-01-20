@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN">
+    <Properties>
+        <Property name="name">market-watcher-service</Property>
+        <Property name="logs">logs</Property>
+        <Property name="pattern">%d{yyyy-MM-dd HH:mm:ss.SSS} | %-5.5p  | %-10.10t | %-20.20C:%-5.5L | %msg%n</Property>
+        <Property name="pattern2">%style{%d{ISO8601}}{white} %highlight{%-5level}[%style{%-17.17t}{bright,blue}] %style{%C{1.}}{bright,yellow}: %msg%n%throwable</Property>
+        <!--
+        It will look like that:
+        2013-04-03 07:37:51.993 | WARN  | main       | lnetgateway.Server:56    | My app is logging stuff
+        -->
+    </Properties>
+    <Appenders>
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout disableAnsi="false">
+                <pattern>${pattern2} </pattern>
+            </PatternLayout>
+        </Console>
+
+        <RollingFile name="marketWatcherServiceLog" fileName="${logs}/market-watcher-service.log"
+                     filePattern="${logs}/market-watcher-service.log.%d{yyyy-MM-dd}-%i">
+            <PatternLayout>
+                <pattern>${pattern}</pattern>
+            </PatternLayout>
+            <Policies>
+                <TimeBasedTriggeringPolicy/><!-- Rotated everyday -->
+                <SizeBasedTriggeringPolicy size="10 MB"/> <!-- Or every 100 MB -->
+            </Policies>
+            <DefaultRolloverStrategy max="30">
+                <Delete basePath="${logs}" maxDepth="2">
+                    <IfLastModified age="5d" />
+                </Delete>
+            </DefaultRolloverStrategy>
+        </RollingFile>
+    </Appenders>
+    <Loggers>
+        <Root level="info">
+            <Appender-ref ref="Console"/>
+            <Appender-ref ref="bochServiceLog"/>
+        </Root>
+    </Loggers>
+</Configuration>
