@@ -1,4 +1,4 @@
 Manifest-Version: 1.0
-Main-Class: com.mws.MarketWatcherService
+Main-Class: cryptobot.mws.MarketWatcherService
 Xms: 512m
 Xmx: 1024m

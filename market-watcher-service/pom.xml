@@ -10,16 +10,21 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
-    <groupId>com.mws</groupId>
+    <groupId>cryptobot.mws</groupId>
     <artifactId>market-watcher-service</artifactId>
     <name>market-watcher-service</name>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.0.3</version>
     <packaging>jar</packaging>
-    <description>watcher</description>
+    <description>market watcher</description>
 
     <properties>
         <java.version>21</java.version>
+        <maven.compiler.source>21</maven.compiler.source>
+        <maven.compiler.target>21</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <!-- Local libs -->
+        <cryptobot.cml>0.0.4</cryptobot.cml>
+        <!-- Others -->
         <lombok.version>1.18.30</lombok.version>
         <lombok-mapstruct-binding.version>0.2.0</lombok-mapstruct-binding.version>
         <postgresql.version>42.6.0</postgresql.version>
@@ -29,6 +34,7 @@
         <mapstruct-processor.version>1.6.0.Beta1</mapstruct-processor.version>
         <httpclient.version>4.5.13</httpclient.version>
         <guava.version>31.0.1-jre</guava.version>
+        <!-- Tests -->
         <testng.version>7.8.0</testng.version>
         <mockito-core.version>5.7.0</mockito-core.version>
         <maven-surefire-plugin.version>3.1.2</maven-surefire-plugin.version>
@@ -64,10 +70,9 @@
         </dependency>
         <!-- Local libs -->
         <dependency>
-            <groupId>com.cml</groupId>
+            <groupId>cryptobot.cml</groupId>
             <artifactId>common-market-lib</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-            <scope>compile</scope>
+            <version>${cryptobot.cml}</version>
         </dependency>
         <!-- Others -->
         <dependency>
@@ -188,4 +193,14 @@
         </plugins>
     </build>
 
+    <distributionManagement>
+        <repository>
+            <id>maven-releases</id>
+            <url>http://localhost:1010/repository/maven-releases/</url>
+        </repository>
+        <snapshotRepository>
+            <id>maven-snapshots</id>
+            <url>http://localhost:1010/repository/maven-snapshots/</url>
+        </snapshotRepository>
+    </distributionManagement>
 </project>

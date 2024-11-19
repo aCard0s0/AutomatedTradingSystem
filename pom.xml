@@ -3,10 +3,10 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>com.ats</groupId>
+	<groupId>cryptobot.ats</groupId>
 	<artifactId>AutomatedTradingSystem</artifactId>
 	<name>AutomatedTradingSystem</name>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.1</version>
 	<packaging>pom</packaging>
 	<description>Automated Trading System</description>
 
@@ -19,8 +19,48 @@
 	<modules>
 		<module>application-engine-service</module>
 		<module>market-watcher-service</module>
-		<module>security-api-module</module>
 		<module>common-market-lib</module>
 	</modules>
+
+	<profiles>
+		<profile>
+			<id>local</id>
+			<properties>
+				<env>localhost</env>
+			</properties>
+		</profile>
+		<profile>
+			<id>dev</id>
+			<properties>
+				<env>development</env>
+			</properties>
+			<repositories>
+				<repository>
+					<id>maven-public</id>
+					<url>http://localhost:1010/repository/maven-public/</url>
+				</repository>
+			</repositories>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+		</profile>
+		<profile>
+			<id>prod</id>
+			<properties>
+				<env>production</env>
+			</properties>
+		</profile>
+	</profiles>
+
+	<distributionManagement>
+		<repository>
+			<id>maven-releases</id>
+			<url>http://localhost:1010/repository/maven-releases/</url>
+		</repository>
+		<snapshotRepository>
+			<id>maven-snapshots</id>
+			<url>http://localhost:1010/repository/maven-snapshots/</url>
+		</snapshotRepository>
+	</distributionManagement>
 
 </project>
